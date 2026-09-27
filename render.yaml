@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: vera-context
+    runtime: python
+    plan: free
+    buildCommand: python -m zipfile -e resources.zip . && python -m compileall -q bot.py
+    startCommand: python bot.py
+    healthCheckPath: /v1/healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
+      - key: DEMO_MODE
+        value: "0"
+      - key: TEAM_NAME
+        value: Vera Context
+      - key: TEAM_MEMBERS
+        value: Ayush Jaiswal
+      - key: CONTACT_EMAIL
+        sync: false
